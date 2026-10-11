@@ -1,0 +1,142 @@
+{
+  "cots_version": "0.1.0",
+  "cots_id": "urn:source-engineering:cots:00000000-0000-0000-0000-000000000003",
+  "produced_at": "2026-10-11T12:00:00Z",
+  "produced_by": {
+    "system_name": "test-fixture",
+    "system_version": "0.1.0"
+  },
+  "inputs": {
+    "source_artifacts": [
+      {
+        "id": "urn:source-engineering:source:contract-2026-002",
+        "origin": {
+          "system_name": "Acme Contracts",
+          "system_version": "1.0.0",
+          "configuration_hash": "0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "version": {
+          "content_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+          "issued_at": "2024-01-01T00:00:00Z"
+        },
+        "authority": {
+          "asserted_by": "acme-contracts",
+          "trust_score": 0.95
+        },
+        "temporal_validity": {
+          "valid_from": "2024-01-01T00:00:00Z",
+          "valid_until": "2025-12-31T23:59:59Z"
+        }
+      }
+    ]
+  },
+  "context": {
+    "model": {
+      "model_name": "claude-sonnet-4-5",
+      "model_version": "2026-09-15"
+    },
+    "parameters": {
+      "temperature": 0.3,
+      "top_p": 0.95,
+      "prompt_cache_id": null,
+      "tool_budget": 8,
+      "retrieval_depth": 5
+    },
+    "constraints": []
+  },
+  "decisions": [
+    {
+      "id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000003",
+      "decision_text": "The contract was valid in 2024.",
+      "basis_id": "urn:source-engineering:basis:00000000-0000-0000-0000-000000000003",
+      "evidence_chain_ref": "urn:source-engineering:evidence-chain:00000000-0000-0000-0000-000000000003",
+      "validation_status": {
+        "status": "pending",
+        "last_changed_at": "2026-10-11T12:00:00Z",
+        "last_changed_by": "test-fixture"
+      },
+      "responsible_authority": {
+        "authority_id": "claude-sonnet-4-5",
+        "authority_type": "automated"
+      },
+      "audit_history": [
+        {
+          "id": "urn:source-engineering:audit:00000000-0000-0000-0000-000000000003",
+          "action": "created",
+          "performed_by": "test-fixture",
+          "performed_at": "2026-10-11T12:00:00Z",
+          "notes": "Initial creation."
+        }
+      ],
+      "created_at": "2026-10-11T12:00:00Z"
+    }
+  ],
+  "evidence": {
+    "evidence_chain": [
+      {
+        "decision_id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000003",
+        "supporting_evidence": [
+          {
+            "id": "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000003",
+            "claim_id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000003",
+            "source_id": "urn:source-engineering:source:contract-2026-002",
+            "transformation": {
+              "operation": "extract_clause",
+              "inputs": ["https://example.com/contracts/2026-002.pdf"],
+              "output": "The contract was signed on 2024-01-15.",
+              "recorded_at": "2026-10-11T12:00:00Z"
+            },
+            "uncertainty": {
+              "calibrated_score": 0.85,
+              "basis": "Direct extraction."
+            },
+            "polarity": "supports"
+          }
+        ],
+        "contradicting_evidence": [
+          {
+            "id": "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000004",
+            "claim_id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000003",
+            "source_id": "urn:source-engineering:source:contract-2026-002",
+            "transformation": {
+              "operation": "check_validity",
+              "inputs": ["https://example.com/contracts/2026-002.pdf"],
+              "output": "The contract was superseded on 2025-12-31.",
+              "recorded_at": "2026-10-11T12:00:00Z"
+            },
+            "uncertainty": {
+              "calibrated_score": 0.90,
+              "basis": "The contract's supersession is recorded in the registry."
+            },
+            "polarity": "contradicts"
+          }
+        ],
+        "claims": [
+          {
+            "id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000003",
+            "decision_record_id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000003",
+            "claim_text": "The contract was valid in 2024.",
+            "claim_type": "factual",
+            "supporting_evidence": [
+              "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000003"
+            ],
+            "contradicting_evidence": [
+              "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000004"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "feedback_surfaces": [
+      {
+        "id": "urn:source-engineering:surface:00000000-0000-0000-0000-000000000003",
+        "type": "appeal",
+        "target": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000003",
+        "endpoint": "https://example.com/appeal/00000000-0000-0000-0000-000000000003",
+        "description": "File an appeal."
+      }
+    ]
+  }
+}

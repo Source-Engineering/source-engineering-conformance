@@ -1,0 +1,96 @@
+{
+  "cots_version": "0.1.0",
+  "cots_id": "urn:source-engineering:cots:00000000-0000-0000-0000-000000000002",
+  "produced_at": "2026-10-11T12:00:00Z",
+  "produced_by": {
+    "system_name": "test-fixture",
+    "system_version": "0.1.0"
+  },
+  "inputs": {
+    "source_artifacts": [
+      {
+        "id": "not-a-uri",
+        "origin": {
+          "system_name": "Acme Contracts",
+          "system_version": "1.0.0",
+          "configuration_hash": "0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "version": {
+          "content_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+          "issued_at": "2026-10-10T08:00:00Z"
+        },
+        "authority": {
+          "asserted_by": "acme-contracts",
+          "trust_score": 0.95
+        },
+        "temporal_validity": {
+          "valid_from": "2026-10-10T08:00:00Z",
+          "valid_until": null
+        }
+      }
+    ]
+  },
+  "context": {
+    "model": {
+      "model_name": "claude-sonnet-4-5",
+      "model_version": "2026-09-15"
+    },
+    "parameters": {
+      "temperature": 0.3,
+      "top_p": 0.95,
+      "prompt_cache_id": null,
+      "tool_budget": 8,
+      "retrieval_depth": 5
+    },
+    "constraints": []
+  },
+  "decisions": [
+    {
+      "id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000002",
+      "decision_text": "The contract is a standard services agreement.",
+      "basis_id": "urn:source-engineering:basis:00000000-0000-0000-0000-000000000002",
+      "evidence_chain_ref": "urn:source-engineering:evidence-chain:00000000-0000-0000-0000-000000000002",
+      "validation_status": {
+        "status": "pending",
+        "last_changed_at": "2026-10-11T12:00:00Z",
+        "last_changed_by": "test-fixture"
+      },
+      "responsible_authority": {
+        "authority_id": "claude-sonnet-4-5",
+        "authority_type": "automated"
+      },
+      "audit_history": [
+        {
+          "id": "urn:source-engineering:audit:00000000-0000-0000-0000-000000000002",
+          "action": "created",
+          "performed_by": "test-fixture",
+          "performed_at": "2026-10-11T12:00:00Z",
+          "notes": "Initial creation."
+        }
+      ],
+      "created_at": "2026-10-11T12:00:00Z"
+    }
+  ],
+  "evidence": {
+    "evidence_chain": [
+      {
+        "decision_id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000002",
+        "supporting_evidence": [],
+        "contradicting_evidence": [],
+        "claims": [
+          {
+            "id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000002",
+            "decision_record_id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000002",
+            "claim_text": "The contract is a services agreement.",
+            "claim_type": "factual",
+            "supporting_evidence": [],
+            "contradicting_evidence": []
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "feedback_surfaces": []
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "source-engineering-conformance",
+  "version": "0.1.0",
+  "description": "Conformance test suite for the Source Engineering discipline.",
+  "type": "module",
+  "main": "dist/runner.js",
+  "bin": {
+    "se-conformance": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "node dist/cli.js validate"
+  },
+  "keywords": [
+    "source-engineering",
+    "conformance",
+    "cots",
+    "test-suite"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^3.0.1",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  }
+}
