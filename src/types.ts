@@ -123,6 +123,29 @@ export interface DecisionRecord {
   responsible_authority: ResponsibleAuthority;
   audit_history: AuditEntry[];
   created_at: ISO8601;
+  /** Layer 2 Validation record (COTS schema v1.1.0, RFC-0001). Optional. */
+  validation?: Layer2Validation;
+}
+
+export type FlagType =
+  | "drift-detected"
+  | "segment-signal-divergence"
+  | "parameter-set-out-of-range"
+  | "temporal-validity-expired";
+
+export type DecisionOnValidation = "passed" | "flagged" | "escalated";
+
+export interface Layer2ValidationFlag {
+  flag_type: FlagType;
+  message: string;
+  detected_at: ISO8601;
+}
+
+export interface Layer2Validation {
+  flags: Layer2ValidationFlag[];
+  decision_on_validation: DecisionOnValidation;
+  validated_at: ISO8601;
+  validated_by: string;
 }
 
 export interface ValidationStatus {
