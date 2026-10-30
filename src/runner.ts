@@ -17,6 +17,7 @@ import { validateDecisionBasis, validateCounterevidence } from "./contracts/deci
 import { validateAuditHistory, validateAuditHistoryOrdered } from "./contracts/lifecycle-integrity.js";
 import { validateFiveParts, validateFeedbackSurfaces } from "./contracts/five-parts.js";
 import { validateLayer2Records } from "./contracts/layer2-integrity.js";
+import { validateUrnGrammar, validateChainResolution, validateTemporalOrdering, validateRecursiveChains } from "./contracts/semantic-integrity.js";
 
 export const run = (cots: Cots): Result => {
   return combine(
@@ -30,7 +31,11 @@ export const run = (cots: Cots): Result => {
     validateAuditHistoryOrdered(cots),
     validateFiveParts(cots),
     validateFeedbackSurfaces(cots),
-    validateLayer2Records(cots)
+    validateLayer2Records(cots),
+    validateUrnGrammar(cots),
+    validateChainResolution(cots),
+    validateTemporalOrdering(cots),
+    validateRecursiveChains(cots)
   );
 };
 
