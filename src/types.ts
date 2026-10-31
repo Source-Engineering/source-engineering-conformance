@@ -167,7 +167,18 @@ export interface AuditEntry {
   notes: string;
 }
 
+export type SourceType = "human-authored" | "human-curated" | "model-generated" | "mixed";
+
+export type ChainTerminationPolicy = "terminal" | "bounded_recursion" | "unbounded_recursion";
+
+export interface ChainTermination {
+  policy: ChainTerminationPolicy;
+  max_levels?: number;
+}
+
 export interface Evidence {
+  /** RFC-0002 (COTS schema v1.2.0). Optional; absent on pre-RFC-0002 COTSs. */
+  chain_termination?: ChainTermination;
   evidence_chain: EvidenceChainEntry[];
 }
 
@@ -194,6 +205,8 @@ export interface EvidenceItem {
   transformation: Transformation;
   uncertainty: Uncertainty;
   polarity: Polarity;
+  /** RFC-0002 (COTS schema v1.2.0). Optional; absent on pre-RFC-0002 COTSs. */
+  source_type?: SourceType;
 }
 
 export interface Transformation {
