@@ -18,6 +18,7 @@ import { validateAuditHistory, validateAuditHistoryOrdered } from "./contracts/l
 import { validateFiveParts, validateFeedbackSurfaces } from "./contracts/five-parts.js";
 import { validateLayer2Records } from "./contracts/layer2-integrity.js";
 import { validateUrnGrammar, validateChainResolution, validateTemporalOrdering, validateRecursiveChains } from "./contracts/semantic-integrity.js";
+import { validateGuardrailDecisions } from "./contracts/layer3-integrity.js";
 
 export const run = (cots: Cots): Result => {
   return combine(
@@ -35,7 +36,8 @@ export const run = (cots: Cots): Result => {
     validateUrnGrammar(cots),
     validateChainResolution(cots),
     validateTemporalOrdering(cots),
-    validateRecursiveChains(cots)
+    validateRecursiveChains(cots),
+    validateGuardrailDecisions(cots)
   );
 };
 
