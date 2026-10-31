@@ -1,0 +1,165 @@
+{
+  "cots_version": "0.1.0",
+  "cots_id": "urn:source-engineering:cots:00000000-0000-0000-0000-000000000001",
+  "produced_at": "2026-10-11T12:00:00Z",
+  "produced_by": {
+    "system_name": "test-fixture",
+    "system_version": "0.1.0"
+  },
+  "inputs": {
+    "source_artifacts": [
+      {
+        "id": "urn:source-engineering:source:contract-2026-001",
+        "origin": {
+          "system_name": "Acme Contracts",
+          "system_version": "1.0.0",
+          "configuration_hash": "0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "version": {
+          "content_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+          "issued_at": "2026-10-10T08:00:00Z"
+        },
+        "authority": {
+          "asserted_by": "acme-contracts",
+          "trust_score": 0.95
+        },
+        "temporal_validity": {
+          "valid_from": "2026-10-10T08:00:00Z",
+          "valid_until": null
+        },
+        "content_reference": {
+          "uri": "https://example.com/contracts/2026-001.pdf",
+          "media_type": "application/pdf"
+        }
+      }
+    ]
+  },
+  "context": {
+    "model": {
+      "model_name": "claude-sonnet-4-5",
+      "model_version": "2026-09-15"
+    },
+    "parameters": {
+      "temperature": 0.3,
+      "top_p": 0.95,
+      "prompt_cache_id": null,
+      "tool_budget": 8,
+      "retrieval_depth": 5
+    },
+    "constraints": [
+      {
+        "id": "urn:source-engineering:constraint:jurisdiction-001",
+        "type": "jurisdiction",
+        "scope": "all_decisions",
+        "value": "US-NY"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000001",
+      "decision_text": "The contract is a standard commercial services agreement with mutual indemnification, a 30-day termination notice, and a New York governing-law clause.",
+      "basis_id": "urn:source-engineering:basis:00000000-0000-0000-0000-000000000001",
+      "evidence_chain_ref": "urn:source-engineering:evidence-chain:00000000-0000-0000-0000-000000000001",
+      "validation_status": {
+        "status": "superseded",
+        "last_changed_at": "2026-10-11T12:00:00Z",
+        "last_changed_by": "test-fixture"
+      },
+      "responsible_authority": {
+        "authority_id": "claude-sonnet-4-5",
+        "authority_type": "automated"
+      },
+      "audit_history": [
+        {
+          "id": "urn:source-engineering:audit:00000000-0000-0000-0000-000000000001",
+          "action": "created",
+          "performed_by": "test-fixture",
+          "performed_at": "2026-10-11T12:00:00Z",
+          "notes": "Initial creation."
+        }
+      ],
+      "created_at": "2026-10-11T12:00:00Z",
+      "guardrail": {
+        "decision": "rejected",
+        "rule_id": "urn:source-engineering:rule:ny-jurisdiction-001",
+        "rationale": "A rationale in domain terms.",
+        "binding": false,
+        "evaluated_at": "2026-10-30T12:00:00Z",
+        "evaluated_by": "layer3-business-guardrails"
+      }
+    }
+  ],
+  "evidence": {
+    "evidence_chain": [
+      {
+        "decision_id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000001",
+        "supporting_evidence": [
+          {
+            "id": "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000001",
+            "claim_id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000001",
+            "source_id": "urn:source-engineering:source:contract-2026-001",
+            "transformation": {
+              "operation": "extract_clause",
+              "inputs": [
+                "https://example.com/contracts/2026-001.pdf#section-7"
+              ],
+              "output": "Section 7.1: Each party shall indemnify and hold harmless...",
+              "recorded_at": "2026-10-11T12:00:00Z"
+            },
+            "uncertainty": {
+              "calibrated_score": 0.92,
+              "basis": "Direct extraction from the section 7.1 text."
+            },
+            "polarity": "supports"
+          }
+        ],
+        "contradicting_evidence": [
+          {
+            "id": "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000002",
+            "claim_id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000001",
+            "source_id": "urn:source-engineering:source:contract-2026-001",
+            "transformation": {
+              "operation": "search_clause",
+              "inputs": [
+                "https://example.com/contracts/2026-001.pdf#section-12"
+              ],
+              "output": "Section 12.4: This agreement shall be governed by the laws of the State of Delaware.",
+              "recorded_at": "2026-10-11T12:00:00Z"
+            },
+            "uncertainty": {
+              "calibrated_score": 0.78,
+              "basis": "Contradictory governing-law clause in section 12.4 (the model rejected it because section 14.1 is the prevailing clause)."
+            },
+            "polarity": "contradicts"
+          }
+        ],
+        "claims": [
+          {
+            "id": "urn:source-engineering:claim:00000000-0000-0000-0000-000000000001",
+            "decision_record_id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000001",
+            "claim_text": "The contract contains a mutual indemnification clause in section 7.1.",
+            "claim_type": "factual",
+            "supporting_evidence": [
+              "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000001"
+            ],
+            "contradicting_evidence": [
+              "urn:source-engineering:evidence:00000000-0000-0000-0000-000000000002"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "feedback_surfaces": [
+      {
+        "id": "urn:source-engineering:surface:00000000-0000-0000-0000-000000000001",
+        "type": "appeal",
+        "target": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000001",
+        "endpoint": "https://example.com/appeal/00000000-0000-0000-0000-000000000001",
+        "description": "File an appeal against this decision."
+      }
+    ]
+  }
+}
