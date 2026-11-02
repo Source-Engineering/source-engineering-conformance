@@ -20,6 +20,7 @@ import { validateFiveParts, validateFeedbackSurfaces } from "./contracts/five-pa
 import { validateLayer2Records } from "./contracts/layer2-integrity.js";
 import { validateUrnGrammar, validateChainResolution, validateTemporalOrdering, validateRecursiveChains } from "./contracts/semantic-integrity.js";
 import { validateGuardrailDecisions } from "./contracts/layer3-integrity.js";
+import { validateAuditTrailComplete, validateAuditTrailAppendOnly, validateLifecycleEventsResolve, validateLifecycleLinkage, validateLegacyAuditTrail } from "./contracts/layer4-integrity.js";
 
 export const run = (cots: Cots): Result => {
   return combine(
@@ -41,7 +42,12 @@ export const run = (cots: Cots): Result => {
     validateChainResolution(cots),
     validateTemporalOrdering(cots),
     validateRecursiveChains(cots),
-    validateGuardrailDecisions(cots)
+    validateGuardrailDecisions(cots),
+    validateAuditTrailComplete(cots),
+    validateAuditTrailAppendOnly(cots),
+    validateLifecycleEventsResolve(cots),
+    validateLifecycleLinkage(cots),
+    validateLegacyAuditTrail(cots)
   );
 };
 
