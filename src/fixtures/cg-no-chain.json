@@ -1,0 +1,99 @@
+{
+  "cots_version": "0.1.0",
+  "cots_id": "urn:source-engineering:cots:00000000-0000-0000-0000-000000000001",
+  "produced_at": "2026-10-11T12:00:00Z",
+  "produced_by": {
+    "system_name": "test-fixture",
+    "system_version": "0.1.0"
+  },
+  "inputs": {
+    "source_artifacts": [
+      {
+        "id": "urn:source-engineering:source:contract-2026-001",
+        "origin": {
+          "system_name": "Acme Contracts",
+          "system_version": "1.0.0",
+          "configuration_hash": "0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "version": {
+          "content_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+          "issued_at": "2026-10-10T08:00:00Z"
+        },
+        "authority": {
+          "asserted_by": "acme-contracts",
+          "trust_score": 0.95
+        },
+        "temporal_validity": {
+          "valid_from": "2026-10-10T08:00:00Z",
+          "valid_until": null
+        },
+        "content_reference": {
+          "uri": "https://example.com/contracts/2026-001.pdf",
+          "media_type": "application/pdf"
+        }
+      }
+    ]
+  },
+  "context": {
+    "model": {
+      "model_name": "claude-sonnet-4-5",
+      "model_version": "2026-09-15"
+    },
+    "parameters": {
+      "temperature": 0.3,
+      "top_p": 0.95,
+      "prompt_cache_id": null,
+      "tool_budget": 8,
+      "retrieval_depth": 5
+    },
+    "constraints": [
+      {
+        "id": "urn:source-engineering:constraint:jurisdiction-001",
+        "type": "jurisdiction",
+        "scope": "all_decisions",
+        "value": "US-NY"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "id": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000001",
+      "decision_text": "The contract is a standard commercial services agreement with mutual indemnification, a 30-day termination notice, and a New York governing-law clause.",
+      "basis_id": "urn:source-engineering:basis:00000000-0000-0000-0000-000000000001",
+      "evidence_chain_ref": "urn:source-engineering:evidence-chain:00000000-0000-0000-0000-000000000001",
+      "validation_status": {
+        "status": "pending",
+        "last_changed_at": "2026-10-11T12:00:00Z",
+        "last_changed_by": "test-fixture"
+      },
+      "responsible_authority": {
+        "authority_id": "claude-sonnet-4-5",
+        "authority_type": "automated"
+      },
+      "audit_history": [
+        {
+          "id": "urn:source-engineering:audit:00000000-0000-0000-0000-000000000001",
+          "action": "created",
+          "performed_by": "test-fixture",
+          "performed_at": "2026-10-11T12:00:00Z",
+          "notes": "Initial creation."
+        }
+      ],
+      "created_at": "2026-10-11T12:00:00Z"
+    }
+  ],
+  "evidence": {
+    "evidence_chain": []
+  },
+  "validation": {
+    "feedback_surfaces": [
+      {
+        "id": "urn:source-engineering:surface:00000000-0000-0000-0000-000000000001",
+        "type": "appeal",
+        "target": "urn:source-engineering:decision:00000000-0000-0000-0000-000000000001",
+        "endpoint": "https://example.com/appeal/00000000-0000-0000-0000-000000000001",
+        "description": "File an appeal against this decision."
+      }
+    ]
+  }
+}
