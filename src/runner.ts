@@ -12,6 +12,7 @@ import type { Cots } from "./types.js";
 import { type Result, combine } from "./result.js";
 import { validateSourceAddresses } from "./contracts/source-integrity.js";
 import { validateContextRecorded, validateSourceValidity } from "./contracts/contextual-integrity.js";
+import { validateContextParametersSurfaced, validateConstraintsSurfaced, validateDecisionsContextualised } from "./contracts/context-graph-integrity.js";
 import { validateEvidenceChain } from "./contracts/evidential-integrity.js";
 import { validateDecisionBasis, validateCounterevidence } from "./contracts/decision-integrity.js";
 import { validateAuditHistory, validateAuditHistoryOrdered } from "./contracts/lifecycle-integrity.js";
@@ -25,6 +26,9 @@ export const run = (cots: Cots): Result => {
     validateSourceAddresses(cots),
     validateContextRecorded(cots),
     validateSourceValidity(cots),
+    validateContextParametersSurfaced(cots),
+    validateConstraintsSurfaced(cots),
+    validateDecisionsContextualised(cots),
     validateEvidenceChain(cots),
     validateDecisionBasis(cots),
     validateCounterevidence(cots),
